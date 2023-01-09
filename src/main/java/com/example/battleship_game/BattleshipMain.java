@@ -6,6 +6,7 @@ import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.MenuBar;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
@@ -27,7 +28,8 @@ public class BattleshipMain extends Application {
 
     private Parent createContent() {
         BorderPane root = new BorderPane();
-        root.setPrefSize(600, 800);
+        root.setMinSize(600,800);
+        root.setMaxSize(1000,1200);
 
         root.setRight(new Text("RIGHT SIDEBAR - CONTROLS"));
 
@@ -47,7 +49,7 @@ public class BattleshipMain extends Application {
             }
 
             if (enemyTurn)
-                enemyMove();
+                moveEnemy();
         });
 
         playerBoard = new Board(false, event -> {
@@ -70,7 +72,7 @@ public class BattleshipMain extends Application {
         return root;
     }
 
-    private void enemyMove() {
+    private void moveEnemy() {
         while (enemyTurn) {
             int x = random.nextInt(10);
             int y = random.nextInt(10);
@@ -111,6 +113,8 @@ public class BattleshipMain extends Application {
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.show();
+
+        MenuBar menuBar = new MenuBar();
     }
 
     public static void main(String[] args) {
