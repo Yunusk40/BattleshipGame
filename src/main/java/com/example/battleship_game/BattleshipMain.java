@@ -3,10 +3,10 @@ package com.example.battleship_game;
 import java.util.Random;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.MenuBar;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
@@ -26,7 +26,7 @@ public class BattleshipMain extends Application {
 
     private Random random = new Random();
 
-    private Parent createContent() {
+    public Parent createContent() {
         BorderPane root = new BorderPane();
         root.setMinSize(600,800);
         root.setMaxSize(1000,1200);
@@ -106,15 +106,22 @@ public class BattleshipMain extends Application {
         running = true;
     }
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        Scene scene = new Scene(createContent());
-        primaryStage.setTitle("Battleship");
-        primaryStage.setScene(scene);
-        primaryStage.setResizable(false);
-        primaryStage.show();
+    static Stage stageSave = null;
+    static Scene sceneSaveBot = null;
+    static Scene sceneSaveReal = null;
 
-        MenuBar menuBar = new MenuBar();
+    @Override
+    public void start(Stage stage) throws Exception {
+        FXMLLoader fxmlLoader = new FXMLLoader(BattleshipMain.class.getResource("MainMenu.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 800);
+        stage.setTitle("Battleship");
+        stage.setScene(scene);
+        stage.setFullScreenExitHint("");
+        stage.setResizable(false);
+        stage.show();
+
+        stageSave = stage;
+        sceneSaveBot = new Scene(createContent());
     }
 
     public static void main(String[] args) {

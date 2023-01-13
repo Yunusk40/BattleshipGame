@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: #20B2AA;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.battleship_game.MenuController">
+   <children>
+      <AnchorPane layoutX="-2.0" layoutY="169.0" prefHeight="631.0" prefWidth="801.0" style="-fx-background-color: fafafa;">
+         <children>
+            <Label layoutX="154.0" layoutY="55.0" prefHeight="89.0" prefWidth="501.0" text="Select game mode" textFill="LIGHTSEAGREEN">
+               <font>
+                  <Font name="Chakra Petch Regular" size="61.0" />
+               </font>
+            </Label>
+            <Button fx:id="ButtonVsFriend" layoutX="282.0" layoutY="216.0" mnemonicParsing="false" onMouseReleased="#startFriends" prefHeight="85.0" prefWidth="245.0" style="-fx-background-color: #20B2AA;" text="VS friend" textFill="WHITE" AnchorPane.bottomAnchor="330.0" AnchorPane.leftAnchor="282.0" AnchorPane.rightAnchor="274.0" AnchorPane.topAnchor="216.0">
+               <font>
+                  <Font name="Chakra Petch Regular" size="33.0" />
+               </font>
+            </Button>
+            <Button fx:id="ButtonVsComputer" layoutX="293.0" layoutY="350.0" mnemonicParsing="false" onMouseReleased="#startComputer" prefHeight="85.0" prefWidth="245.0" style="-fx-background-color: #20B2AA;" text="VS computer" textFill="WHITE" AnchorPane.leftAnchor="282.0" AnchorPane.rightAnchor="274.0">
+               <font>
+                  <Font name="Chakra Petch Regular" size="33.0" />
+               </font>
+            </Button>
+            <Pane fx:id="rulesPane" prefHeight="631.0" prefWidth="801.0" style="-fx-background-color: white;" visible="false">
+               <children>
+                  <Label layoutX="14.0" layoutY="14.0" style="-fx-font-size: 22; -fx-font-weight: 700;" text="Game rules:" />
+                  <Text layoutX="14.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Battleship is a classic two-player strategy game. The objective of the game is to sink all of your opponent's ships before they sink all of yours." wrappingWidth="749.0" />
+                  <Text layoutX="14.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Each player starts with a fleet of ships, which includes:" />
+                  <Text layoutX="14.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="One battleship (4 squares)" />
+                  <Text layoutX="14.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="One destroyer (3 squares)" />
+                  <Text layoutX="14.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="One submarine (2 squares)" />
+                  <Text layoutX="14.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="One patrol boat (1 square)" />
+                  <Text layoutX="14.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The game is played on a grid, where players take turns guessing the location of their opponent's ships. Each player must place their ships on their own grid before the game begins. Once the ships are placed, players take turns guessing the location of their opponent's ships by calling out a specific coordinate on the grid, such as &quot;A3&quot; or &quot;B5&quot;." wrappingWidth="749.0" />
+                  <Text layoutX="14.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="If a player guesses a coordinate that contains a ship, it is considered a &quot;hit&quot;. If a player guesses a coordinate that does not contain a ship, it is considered a &quot;miss&quot;. A player is allowed to continue guessing until they get a miss." wrappingWidth="749.0" />
+                  <Text layoutX="14.0" layoutY="312.0" strokeType="OUTSIDE" strokeWidth="0.0" text="When a player hits all the squares of a ship, it is considered &quot;sunk&quot;. A player must sink all squares of a ship to count as sinking it." />
+                  <Text layoutX="14.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The game ends when one player sinks all of the other player's ships. The player who sinks all of the opponent's ships first is the winner." />
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
+      <Label layoutX="30.0" layoutY="22.0" prefHeight="120.0" prefWidth="754.0" text="Welcome to sea battles" textAlignment="JUSTIFY" textFill="WHITE" textOverrun="CLIP" underline="true" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+         <font>
+            <Font name="Chakra Petch Regular" size="73.0" />
+         </font>
+      </Label>
+      <Button layoutY="741.0" mnemonicParsing="false" onAction="#rulesButton" prefHeight="51.0" prefWidth="182.0" style="-fx-background-color: #20B2AA;" text="How to play?" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0">
+         <font>
+            <Font name="Chakra Petch Regular" size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="ButtonExit" mnemonicParsing="false" onMouseReleased="#exit" prefHeight="51.0" prefWidth="182.0" style="-fx-background-color: #20B2AA;" text="Exit" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
+         <font>
+            <Font name="Chakra Petch Regular" size="24.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
