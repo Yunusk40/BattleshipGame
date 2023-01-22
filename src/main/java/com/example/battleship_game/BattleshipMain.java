@@ -26,14 +26,21 @@ public class BattleshipMain extends Application {
 
     private Random random = new Random();
 
+    private EnemyAI enemyAI;
+
+    //Erstellt das UI
     public Parent createContent() {
+        // Erstellt eine Basis Pberfläche
         BorderPane root = new BorderPane();
         root.setMinSize(600,800);
         root.setMaxSize(1000,1200);
 
+        // Fügt ein Panel rechts hinzu
         root.setRight(new Text("RIGHT SIDEBAR - CONTROLS"));
 
+        // Event = Klicken auf eine Zelle im gegnerischen Spielfeld
         enemyBoard = new Board(true, event -> {
+            // Sind wir im Zustand "Abwechselndes Schießen" wenn nicht Event = Schiff setzen
             if (!running)
                 return;
 
@@ -41,22 +48,29 @@ public class BattleshipMain extends Application {
             if (cell.wasShot)
                 return;
 
+            // Wurde ein gegnerisches Schiff getroffen? -> Wenn ja dann darf man nochmal da moveEnemy() nicht aufgerufen wird
             enemyTurn = !cell.shoot();
 
+            // Befinden sich noch Schiffe auf dem gegenerischen Feld?
             if (enemyBoard.ships == 0) {
                 System.out.println("YOU WIN");
                 System.exit(0);
             }
 
+            // Wenn nicht getroffen wurde, dann ist der Gegner am Zug
             if (enemyTurn)
                 moveEnemy();
         });
 
+        // Event = Klicken auf eine Zelle im eigenen Spielfeld
         playerBoard = new Board(false, event -> {
+            // Sind wir im Zustand "Abwechselndes Schießen" wenn nicht Event = Schiff setzen
             if (running)
                 return;
 
             Cell cell = (Cell) event.getSource();
+
+            // Setzt neues Schiff (horizonzal/vertiakl). Wenn alle Schiffe gesetzt sind, dann starte das Siel -> running = true!
             if (playerBoard.placeShip(new Ship(shipsToPlace, event.getButton() == MouseButton.PRIMARY), cell.x, cell.y)) {
                 if (--shipsToPlace == 0) {
                     startGame();
@@ -64,6 +78,9 @@ public class BattleshipMain extends Application {
             }
         });
 
+        this.enemyAI = new EnemyAI(playerBoard);
+
+        // Setzt die boards in eine Vertikale Box und positioniert sie zentral mittig
         VBox vbox = new VBox(50, enemyBoard, playerBoard);
         vbox.setAlignment(Pos.CENTER);
 
@@ -72,22 +89,9 @@ public class BattleshipMain extends Application {
         return root;
     }
 
+    // Führt einen zufälligen Zug vom PC aus
     private void moveEnemy() {
-        while (enemyTurn) {
-            int x = random.nextInt(10);
-            int y = random.nextInt(10);
-
-            Cell cell = playerBoard.getCell(x, y);
-            if (cell.wasShot)
-                continue;
-
-            enemyTurn = cell.shoot();
-
-            if (playerBoard.ships == 0) {
-                System.out.println("YOU LOSE");
-                System.exit(0);
-            }
-        }
+        enemyAI.intelligentShoot();
     }
 
     private void startGame() {
