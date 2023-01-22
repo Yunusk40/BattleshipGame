@@ -7,9 +7,11 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
-import static com.example.battleship_game.BattleshipMain.sceneSaveBot;
-import static com.example.battleship_game.BattleshipMain.stageSave;
+import static com.example.battleship_game.BattleshipMain.*;
 
+/**
+ * Bildet das Menü und die Navigation ab
+ */
 public class MenuController {
     @FXML
     private Pane rulesPane;
@@ -22,6 +24,13 @@ public class MenuController {
     @FXML
     void rulesButton(ActionEvent event) {
         rulesPane.setVisible(!rulesPane.isVisible());
+    }
+
+    @FXML
+    void startFriends(MouseEvent event) {
+        stageSave.setTitle("Battleship Player vs Player");
+        stageSave.setScene(sceneSaveReal);
+        stageSave.show();
     }
 
     @FXML

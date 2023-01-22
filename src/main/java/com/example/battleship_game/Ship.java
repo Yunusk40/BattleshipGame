@@ -5,10 +5,12 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
+/**
+ * Schiff Klasse
+ */
 public class Ship extends Parent {
     public int type;
     public boolean vertical = true;
-
     private int health;
 
     public Ship(int type, boolean vertical) {
