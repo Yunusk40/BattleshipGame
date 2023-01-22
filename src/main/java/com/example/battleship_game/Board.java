@@ -213,24 +213,4 @@ public class Board extends Parent {
             return false;
         }
     }
-
-    /*public static Button createModeSwitchButton() {
-        Button switchButton = new Button("Mensch gegen Computer");
-
-        switchButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                if (switchButton.getText().equals("Mensch gegen Computer")) {
-                    switchButton.setText("Mensch gegen Mensch");
-                    // Hier können Sie den Moduswechsel von "Mensch gegen Computer" zu "Mensch gegen Mensch" verarbeiten
-                }
-                else {
-                    switchButton.setText("Mensch gegen Computer");
-                    // Hier können Sie den Moduswechsel von "Mensch gegen Mensch" zu "Mensch gegen Computer" verarbeiten
-                }
-            }
-        });
-
-        return switchButton;
-    }*/
 }
