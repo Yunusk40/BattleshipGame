@@ -27,23 +27,19 @@ public class BattleshipMain extends Application {
     private Random random = new Random();
     static Stage stageSave = null;
     static Scene sceneSaveBot = null;
+    static Scene sceneSaveReal = null;
     public static boolean win = false;
     private static Stage stage;
 
     private EnemyAI enemyAI;
 
     //Erstellt das UI
-    public Parent createContent(String mode) {
+    public Parent createContent() {
         // Erstellt eine Basis Oberfläche
         running = false;
         shipsToPlace = 5;
         enemyTurn = false;
         BorderPane root = new BorderPane();
-        root.setMinSize(500,500);
-        root.setMaxSize(500,500);
-
-        // Fügt ein Panel rechts hinzu
-        root.setRight(new Text("RIGHT SIDEBAR - CONTROLS"));
         root.setMinSize(500,500);
         root.setMaxSize(500,500);
 
@@ -57,10 +53,10 @@ public class BattleshipMain extends Application {
             if (cell.wasShot)
                 return;
 
-            // Wurde ein gegnerisches Schiff getroffen? -> Wenn ja dann darf man nochmal da moveEnemy() nicht aufgerufen wird
+            // Wurde ein gegnerisches Schiff getroffen? Wenn "ja" dann darf man nochmal da moveEnemy() nicht aufgerufen wird
             enemyTurn = !cell.shoot();
 
-            // Befinden sich noch Schiffe auf dem gegenerischen Feld?
+            // Befinden sich noch Schiffe auf dem gegnerischen Feld?
             if (enemyBoard.ships == 0) {
                 System.out.println("YOU WIN");
                 win = true;
@@ -72,8 +68,13 @@ public class BattleshipMain extends Application {
             }
 
             // Wenn nicht getroffen wurde, dann ist der Gegner am Zug
-            if (enemyTurn)
-                moveEnemy();
+            if (enemyTurn) {
+                try {
+                    moveEnemy();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
         });
 
         // Event = Klicken auf eine Zelle im eigenen Spielfeld
@@ -84,24 +85,9 @@ public class BattleshipMain extends Application {
 
             Cell cell = (Cell) event.getSource();
 
-            // Setzt neues Schiff (horizonzal/vertiakl). Wenn alle Schiffe gesetzt sind, dann starte das Siel -> running = true!
+            // Setzt neues Schiff (horizontal/vertikal). Wenn alle Schiffe gesetzt sind, dann starte das Siel -> running = true!
             if (playerBoard.placeShip(new Ship(shipsToPlace, event.getButton() == MouseButton.PRIMARY), cell.x, cell.y)) {
-                if (--shipsToPlace == 0 && mode == "pvc") {
-                    startGame();
-                }
-            }
-        });
-
-        secondPlayerBoard = new Board(false, event->{
-            // Sind wir im Zustand "Abwechselndes Schießen" wenn nicht Event = Schiff setzen
-            if (running)
-                return;
-
-            Cell cell = (Cell) event.getSource();
-
-            // Setzt neues Schiff (horizonzal/vertiakl). Wenn alle Schiffe gesetzt sind, dann starte das Siel -> running = true!
-            if (secondPlayerBoard.placeShip(new Ship(shipsToPlace, event.getButton() == MouseButton.PRIMARY), cell.x, cell.y)) {
-                if (--shipsToPlace == 0 && mode == "pvp") {
+                if (--shipsToPlace == 0) {
                     startGame();
                 }
             }
@@ -109,15 +95,9 @@ public class BattleshipMain extends Application {
 
         this.enemyAI = new EnemyAI(playerBoard);
 
-        // Setzt die boards in eine Vertikale Box und positioniert sie zentral mittig
+        // Setzt die boards in eine Horizontale Box und positioniert sie zentral mittig
 
-        HBox hbox = null;
-
-        if(mode == "pvc"){
-            hbox = new HBox(50, enemyBoard, playerBoard);
-        } else if (mode == "pvp"){
-            hbox = new HBox(50, secondPlayerBoard, playerBoard);
-        }
+        HBox hbox = new HBox(20, enemyBoard, playerBoard);
 
         hbox.setAlignment(Pos.CENTER);
 
@@ -127,7 +107,7 @@ public class BattleshipMain extends Application {
     }
 
     // Führt einen intelligenten Zug vom PC aus
-    private void moveEnemy() {
+    private void moveEnemy() throws IOException {
         enemyAI.intelligentShoot();
 
         if (playerBoard.ships == 0) {
@@ -140,7 +120,7 @@ public class BattleshipMain extends Application {
     private void changeScene() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(BattleshipMain.class.getResource("endScreen.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 800, 670);
-        sceneSaveBot = new Scene(createContent("pvc"), 700, 500);
+        sceneSaveBot = new Scene(createContent(), 700, 500);
         Stage stage = stageSave;
         stage.setTitle("Battleship");
         stage.setScene(scene);
@@ -178,8 +158,7 @@ public class BattleshipMain extends Application {
         stage.show();
 
         stageSave = stage;
-        sceneSaveBot = new Scene(createContent("pvc"),700, 500);
-        sceneSaveReal = new Scene(createContent("pvp"), 700, 500);
+        sceneSaveBot = new Scene(createContent(),700, 500);
     }
 
     public static void main(String[] args) {

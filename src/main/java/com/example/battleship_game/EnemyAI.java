@@ -77,12 +77,6 @@ public class EnemyAI {
 
             }
         }
-
-        // Wenn alle Schiffe versenkt sind, dann Ende
-        if (board.ships == 0) {
-            System.out.println("YOU LOSE");
-            System.exit(0);
-        }
     }
 
     public boolean findDirection() {
