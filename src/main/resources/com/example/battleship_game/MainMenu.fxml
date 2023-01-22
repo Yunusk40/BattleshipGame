@@ -2,21 +2,23 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: #20B2AA;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.battleship_game.MenuController">
+<AnchorPane prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: #20B2AA;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.battleship_game.MenuController">
    <children>
       <AnchorPane layoutX="-2.0" layoutY="169.0" prefHeight="631.0" prefWidth="801.0" style="-fx-background-color: fafafa;">
          <children>
-            <Label layoutX="154.0" layoutY="55.0" prefHeight="89.0" prefWidth="501.0" text="Select game mode" textFill="LIGHTSEAGREEN">
+            <Label layoutX="39.0" layoutY="14.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="723.0" text="Press &quot;Play Game&quot; to start" textFill="LIGHTSEAGREEN">
                <font>
                   <Font name="Chakra Petch Regular" size="61.0" />
                </font>
             </Label>
-            <Button fx:id="ButtonVsComputer" layoutX="282.0" layoutY="273.0" mnemonicParsing="false" onMouseReleased="#startComputer" prefHeight="85.0" prefWidth="245.0" style="-fx-background-color: #20B2AA;" text="Play Game" textFill="WHITE" AnchorPane.leftAnchor="282.0" AnchorPane.rightAnchor="274.0">
+            <Button fx:id="ButtonVsComputer" layoutX="278.0" layoutY="316.0" mnemonicParsing="false" onMouseReleased="#startComputer" prefHeight="85.0" prefWidth="245.0" style="-fx-background-color: #20B2AA;" text="Play Game" textFill="WHITE" AnchorPane.leftAnchor="278.0" AnchorPane.rightAnchor="278.0">
                <font>
                   <Font name="Chakra Petch Regular" size="33.0" />
                </font>
@@ -36,6 +38,11 @@
                   <Text layoutX="14.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The game ends when one player sinks all of the other player's ships. The player who sinks all of the opponent's ships first is the winner." />
                </children>
             </Pane>
+            <ImageView fitHeight="199.0" fitWidth="237.0" layoutX="301.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../Downloads/3117918.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
       <Label layoutX="30.0" layoutY="22.0" prefHeight="120.0" prefWidth="754.0" text="Welcome to sea battles" textAlignment="JUSTIFY" textFill="WHITE" textOverrun="CLIP" underline="true" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
@@ -53,5 +60,6 @@
             <Font name="Chakra Petch Regular" size="24.0" />
          </font>
       </Button>
+      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

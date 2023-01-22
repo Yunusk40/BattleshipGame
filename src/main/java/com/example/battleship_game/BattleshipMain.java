@@ -46,7 +46,6 @@ public class BattleshipMain extends Application {
             enemyTurn = !box.shoot();
 
             if (enemyGameboard.ships == 0) {
-                System.out.println("YOU WIN");
                 win = true;
                 try {
                     changeScene();
