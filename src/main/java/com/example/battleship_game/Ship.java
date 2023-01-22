@@ -1,22 +1,19 @@
 package com.example.battleship_game;
 
 import javafx.scene.Parent;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 
 /**
  * Schiff Klasse
  */
 public class Ship extends Parent {
-    public int type;
+    public int ships;
     public boolean vertical = true;
     private int health;
 
-    public Ship(int type, boolean vertical) {
-        this.type = type;
+    public Ship(int ships, boolean vertical) {
+        this.ships = ships;
         this.vertical = vertical;
-        health = type;
+        health = ships;
 
     }
 
