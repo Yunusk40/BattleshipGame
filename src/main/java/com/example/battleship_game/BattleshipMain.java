@@ -1,5 +1,6 @@
 package com.example.battleship_game;
 
+import java.io.IOException;
 import java.util.Random;
 
 import javafx.application.Application;
@@ -9,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -19,19 +21,21 @@ public class BattleshipMain extends Application {
 
     private boolean running = false;
     private Board enemyBoard, playerBoard;
-
     private int shipsToPlace = 5;
-
     private boolean enemyTurn = false;
-
     private Random random = new Random();
+    static Stage stageSave = null;
+    static Scene sceneSaveBot = null;
+    public static boolean win = false;
+    private static Stage stage;
 
-    public Parent createContent() {
+    public Parent createContentBot() {
+        running = false;
+        shipsToPlace = 5;
+        enemyTurn = false;
         BorderPane root = new BorderPane();
-        root.setMinSize(600,800);
-        root.setMaxSize(1000,1200);
-
-        root.setRight(new Text("RIGHT SIDEBAR - CONTROLS"));
+        root.setMinSize(500,500);
+        root.setMaxSize(500,500);
 
         enemyBoard = new Board(true, event -> {
             if (!running)
@@ -45,11 +49,21 @@ public class BattleshipMain extends Application {
 
             if (enemyBoard.ships == 0) {
                 System.out.println("YOU WIN");
-                System.exit(0);
+                win = true;
+                try {
+                    changeScene();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
 
-            if (enemyTurn)
-                moveEnemy();
+            if (enemyTurn) {
+                try {
+                    moveBot();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
         });
 
         playerBoard = new Board(false, event -> {
@@ -64,15 +78,15 @@ public class BattleshipMain extends Application {
             }
         });
 
-        VBox vbox = new VBox(50, enemyBoard, playerBoard);
-        vbox.setAlignment(Pos.CENTER);
+        HBox hbox = new HBox(20, enemyBoard, playerBoard);
+        hbox.setAlignment(Pos.CENTER);
 
-        root.setCenter(vbox);
+        root.setCenter(hbox);
 
         return root;
     }
 
-    private void moveEnemy() {
+    private void moveBot() throws IOException {
         while (enemyTurn) {
             int x = random.nextInt(10);
             int y = random.nextInt(10);
@@ -85,9 +99,24 @@ public class BattleshipMain extends Application {
 
             if (playerBoard.ships == 0) {
                 System.out.println("YOU LOSE");
-                System.exit(0);
+                win = false;
+                changeScene();
             }
         }
+    }
+
+    private void changeScene() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(BattleshipMain.class.getResource("endScreen.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 670);
+        sceneSaveBot = new Scene(createContentBot(), 700, 500);
+        Stage stage = stageSave;
+        stage.setTitle("Battleship");
+        stage.setScene(scene);
+        stage.setFullScreenExitHint("");
+        stage.setResizable(false);
+        stage.show();
+
+        stageSave = stage;
     }
 
     private void startGame() {
@@ -106,10 +135,6 @@ public class BattleshipMain extends Application {
         running = true;
     }
 
-    static Stage stageSave = null;
-    static Scene sceneSaveBot = null;
-    static Scene sceneSaveReal = null;
-
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(BattleshipMain.class.getResource("MainMenu.fxml"));
@@ -121,7 +146,7 @@ public class BattleshipMain extends Application {
         stage.show();
 
         stageSave = stage;
-        sceneSaveBot = new Scene(createContent());
+        sceneSaveBot = new Scene(createContentBot(), 700, 500);
     }
 
     public static void main(String[] args) {

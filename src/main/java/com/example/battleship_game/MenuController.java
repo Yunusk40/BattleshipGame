@@ -2,6 +2,8 @@ package com.example.battleship_game;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
@@ -23,15 +25,9 @@ public class MenuController {
     }
 
     @FXML
-    void startFriends(MouseEvent event) {
-        stageSave.setTitle("Battleship Player vs Player");
-        stageSave.setScene(sceneSaveBot);
-        stageSave.show();
-    }
-
-    @FXML
     void startComputer(MouseEvent event) {
         stageSave.setTitle("Battleship Bot vs Player");
+
         stageSave.setScene(sceneSaveBot);
         stageSave.show();
     }
