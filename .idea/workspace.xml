@@ -6,6 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="e0ee239a-fa32-47c8-b0aa-8a680363347b" name="Changes" comment="commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/README.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/battleship_game/BattleshipMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/battleship_game/BattleshipMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/battleship_game/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/battleship_game/Gameboard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/battleship_game/Ship.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/battleship_game/Ship.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +47,19 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="49ff9ff7-92f8-44ac-9b69-c1ea26121068" />
+        <option name="url" value="https://github.com/Yunusk40/BattleshipGame.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.openjfx/javafx-graphics/17.0.2/ee9bf7c8b99e0075784cc3f569c0827c4c2db56e/javafx-graphics-17.0.2-sources.jar!/javafx/scene/input/MouseButton.java" root0="SKIP_INSPECTION" />
@@ -142,7 +159,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674412440462</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="commit">
+      <created>1674415219149</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1674415219149</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
