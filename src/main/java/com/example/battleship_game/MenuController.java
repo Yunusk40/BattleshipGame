@@ -31,4 +31,11 @@ public class MenuController {
         stageSave.show();
     }
 
+    @FXML
+    void startFriends() {
+        stageSave.setTitle("Battleship Player vs Player");
+        stageSave.setScene(sceneSaveReal);
+        stageSave.show();
+    }
+
 }

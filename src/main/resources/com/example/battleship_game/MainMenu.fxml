@@ -13,7 +13,12 @@
                   <Font name="Chakra Petch Regular" size="61.0" />
                </font>
             </Label>
-            <Button fx:id="ButtonVsComputer" layoutX="282.0" layoutY="273.0" mnemonicParsing="false" onMouseReleased="#startComputer" prefHeight="85.0" prefWidth="245.0" style="-fx-background-color: #20B2AA;" text="Play Game" textFill="WHITE" AnchorPane.leftAnchor="282.0" AnchorPane.rightAnchor="274.0">
+            <Button fx:id="ButtonVsFriend" layoutX="282.0" layoutY="216.0" mnemonicParsing="false" onMouseReleased="#startFriends" prefHeight="85.0" prefWidth="245.0" style="-fx-background-color: #20B2AA;" text="VS friend" textFill="WHITE" AnchorPane.bottomAnchor="330.0" AnchorPane.leftAnchor="282.0" AnchorPane.rightAnchor="274.0" AnchorPane.topAnchor="216.0">
+               <font>
+                  <Font name="Chakra Petch Regular" size="33.0" />
+               </font>
+            </Button>
+            <Button fx:id="ButtonVsComputer" layoutX="293.0" layoutY="350.0" mnemonicParsing="false" onMouseReleased="#startComputer" prefHeight="85.0" prefWidth="245.0" style="-fx-background-color: #20B2AA;" text="VS computer" textFill="WHITE" AnchorPane.leftAnchor="282.0" AnchorPane.rightAnchor="274.0">
                <font>
                   <Font name="Chakra Petch Regular" size="33.0" />
                </font>

@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e0ee239a-fa32-47c8-b0aa-8a680363347b" name="Changes" comment="Player vs Player implementiert">
+    <list default="true" id="e0ee239a-fa32-47c8-b0aa-8a680363347b" name="Changes" comment="Kleine Verbesserungen">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/battleship_game/BattleshipMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/battleship_game/BattleshipMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/battleship_game/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/battleship_game/MenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/battleship_game/MainMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/battleship_game/MainMenu.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -170,21 +171,5 @@
     <MESSAGE value="commit" />
     <MESSAGE value="Player vs Player implementiert" />
     <option name="LAST_COMMIT_MESSAGE" value="Player vs Player implementiert" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/battleship_game/MenuController.java</url>
-          <line>28</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/battleship_game/MenuController.java</url>
-          <line>35</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
