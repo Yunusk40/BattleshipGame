@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e0ee239a-fa32-47c8-b0aa-8a680363347b" name="Changes" comment="Kleine Verbesserungen">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/README.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,8 +80,8 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="BattleshipMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.battleship_game.BattleshipMain" />
+    <configuration name="MainBattleship" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.battleship_game.MainBattleship" />
       <module name="Battleship_Game.main" />
       <extension name="coverage">
         <pattern>
@@ -94,7 +95,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.BattleshipMain" />
+        <item itemvalue="Application.MainBattleship" />
       </list>
     </recent_temporary>
   </component>
@@ -116,7 +117,7 @@
       <workItem from="1674398627762" duration="1831000" />
       <workItem from="1674465545365" duration="225000" />
       <workItem from="1674465772416" duration="4452000" />
-      <workItem from="1674472884021" duration="1494000" />
+      <workItem from="1674472884021" duration="2842000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <created>1672504000548</created>
@@ -153,7 +154,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674474359371</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Kleine Verbesserungen">
+      <created>1674474484747</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1674474484747</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
