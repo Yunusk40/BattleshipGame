@@ -26,7 +26,6 @@ public class BattleshipMain extends Application {
     private int shipsToPlaceP2 = 5;
 
     private int playerTurn = 1;
-    private boolean isPVP;
     private boolean enemyTurn = false;
     private final Random random = new Random();
     static Stage stageSave = null;
@@ -39,7 +38,6 @@ public class BattleshipMain extends Application {
     //Erstellt das UI
     public Parent createContent() {
         // Erstellt eine Basis Oberfläche
-        isPVP = false;
         running = false;
         shipsToPlace = 5;
         enemyTurn = false;
@@ -127,7 +125,6 @@ public class BattleshipMain extends Application {
         playerTurn = 1;
         shipsToPlaceP1 = 5;
         shipsToPlaceP2 = 5;
-        isPVP = true;
 
         BorderPane rootPVP = new BorderPane();
         rootPVP.setMinSize(500,500);
@@ -147,7 +144,7 @@ public class BattleshipMain extends Application {
                     swapVisibility(false, true);
                 }
             } else if (shipsToPlaceP1 == 0){
-                boolean shooting = true;
+                boolean shooting;
                 swapVisibility(true, false);
 
                 if (cell.wasShot)
@@ -189,7 +186,7 @@ public class BattleshipMain extends Application {
                     }
                 }
             } else  if (shipsToPlaceP2 == 0){
-                boolean shooting = true;
+                boolean shooting;
                 if (cell.wasShot)
                     return;
 
@@ -240,9 +237,9 @@ public class BattleshipMain extends Application {
                 cell.setStroke(Color.BLACK);
             }
         }
-
     }
 
+    // Setzt die Sichtbarkeit der Spielfelder
     private void swapVisibility(boolean p1, boolean p2){
         secondPlayerBoard.rows.setVisible(p2);
         firstPlayerBoard.rows.setVisible(p1);
