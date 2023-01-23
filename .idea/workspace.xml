@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e0ee239a-fa32-47c8-b0aa-8a680363347b" name="Changes" comment="commit">
+    <list default="true" id="e0ee239a-fa32-47c8-b0aa-8a680363347b" name="Changes" comment="Player vs Player implementiert">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/battleship_game/BattleshipMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/battleship_game/BattleshipMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/battleship_game/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/battleship_game/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/battleship_game/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/battleship_game/MenuController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,7 +142,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673285308044</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Player vs Player implementiert">
+      <created>1674478675980</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1674478675980</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -163,7 +168,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit" />
+    <MESSAGE value="Player vs Player implementiert" />
+    <option name="LAST_COMMIT_MESSAGE" value="Player vs Player implementiert" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
