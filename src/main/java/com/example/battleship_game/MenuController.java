@@ -33,7 +33,6 @@ public class MenuController {
     @FXML
     void startComputer() {
         stageSave.setTitle("Battleship Bot vs Player");
-
         stageSave.setScene(sceneSaveBot);
         stageSave.show();
     }

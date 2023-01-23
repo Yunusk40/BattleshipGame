@@ -19,7 +19,7 @@ import javafx.scene.shape.Rectangle;
  */
 public class Board extends Parent {
     // Kapselt die horizontalen Boxen und ordnet sie Vertikal an → UI Komponente Spielfeld
-    private final VBox rows = new VBox();
+    public final VBox rows = new VBox();
     // Setzt dest ob Spieler oder Gegner Feld
     private final boolean enemy;
     // Anzahl der Schiffe pro Feld
