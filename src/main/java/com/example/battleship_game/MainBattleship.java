@@ -225,15 +225,15 @@ public class MainBattleship extends Application {
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 Gameboard.Box cell = firstPlayerBoard.getBox(i,j);
-                cell.setFill(Color.LIGHTGRAY);
+                cell.setFill(Color.BLUE);
                 cell.setStroke(Color.BLACK);
             }
         }
 
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
-                Gameboard.Box cell = firstPlayerBoard.getBox(i,j);
-                cell.setFill(Color.LIGHTGRAY);
+                Gameboard.Box cell = secondPlayerBoard.getBox(i,j);
+                cell.setFill(Color.BLUE);
                 cell.setStroke(Color.BLACK);
             }
         }
