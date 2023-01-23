@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 
 import javafx.scene.layout.Pane;
 
-import static com.example.battleship_game.BattleshipMain.*;
+import static com.example.battleship_game.MainBattleship.*;
 
 /**
  * Bildet das Menü und die Navigation ab

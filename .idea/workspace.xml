@@ -6,9 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e0ee239a-fa32-47c8-b0aa-8a680363347b" name="Changes" comment="Kleine Verbesserungen">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/battleship_game/BattleshipMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/battleship_game/BattleshipMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/battleship_game/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/battleship_game/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/battleship_game/MainMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/battleship_game/MainMenu.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,9 +31,6 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="GithubDefaultAccount">
-    <option name="defaultAccountId" value="a19ec27b-0396-4eff-a2bf-1f65008254b5" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.openjfx/javafx-graphics/17.0.2/ee9bf7c8b99e0075784cc3f569c0827c4c2db56e/javafx-graphics-17.0.2-sources.jar!/javafx/scene/input/MouseButton.java" root0="SKIP_INSPECTION" />
@@ -122,7 +116,7 @@
       <workItem from="1674398627762" duration="1831000" />
       <workItem from="1674465545365" duration="225000" />
       <workItem from="1674465772416" duration="4452000" />
-      <workItem from="1674472884021" duration="1265000" />
+      <workItem from="1674472884021" duration="1494000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <created>1672504000548</created>
@@ -152,7 +146,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674469817966</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Kleine Verbesserungen">
+      <created>1674474359371</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1674474359371</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

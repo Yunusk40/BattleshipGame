@@ -7,7 +7,7 @@ import javafx.scene.text.Text;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static com.example.battleship_game.BattleshipMain.*;
+import static com.example.battleship_game.MainBattleship.*;
 
 public class WinController implements Initializable {
     @FXML

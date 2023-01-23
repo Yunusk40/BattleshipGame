@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 
 import com.example.battleship_game.Gameboard.Box;
 
-public class BattleshipMain extends Application {
+public class MainBattleship extends Application {
 
     private boolean running = false;
     private Gameboard enemyGameboard, playerGameboard;
@@ -115,7 +115,7 @@ public class BattleshipMain extends Application {
 
     // Erstellt die JavaFX Szene für das Spiel
     private void changeScene() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(BattleshipMain.class.getResource("endScreen.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainBattleship.class.getResource("endScreen.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 800, 670);
         sceneSaveBot = new Scene(createContent(), 700, 500);
         Stage stage = stageSave;
@@ -146,7 +146,7 @@ public class BattleshipMain extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(BattleshipMain.class.getResource("MainMenu.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainBattleship.class.getResource("MainMenu.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 800, 800);
         stage.setTitle("Battleship");
         stage.setScene(scene);
