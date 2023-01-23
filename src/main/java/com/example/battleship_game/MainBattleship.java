@@ -28,6 +28,7 @@ public class MainBattleship extends Application {
     static Scene sceneSaveReal = null;
     public static boolean win = false;
 
+
     private EnemyAI enemyAI;
 
     //Erstellt das UI

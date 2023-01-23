@@ -23,17 +23,10 @@ public class MenuController {
         rulesPane.setVisible(!rulesPane.isVisible());
     }
 
-    @FXML
-    void startFriends() {
-        stageSave.setTitle("Battleship Player vs Player");
-        stageSave.setScene(sceneSaveReal);
-        stageSave.show();
-    }
 
     @FXML
     void startComputer() {
         stageSave.setTitle("Battleship Bot vs Player");
-
         stageSave.setScene(sceneSaveBot);
         stageSave.show();
     }
