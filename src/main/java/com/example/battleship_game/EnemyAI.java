@@ -12,17 +12,17 @@ public class EnemyAI {
     // Zustandsvariablen: Definiert, ob zufällig oder gezielt geschossen werden soll
     private boolean shootRandom = true;
     private boolean directionSet = false;
-    private final Board board;
+    private final Gameboard gameboard;
     // Die letzte beschossene Zelle und im Falle eines Treffers die erste Zelle
-    private Board.Cell lastHit = null;
-    private Board.Cell firstHit = null;
+    private Gameboard.Box lastHit = null;
+    private Gameboard.Box firstHit = null;
 
     //Benötigt, um die richtige Richtung weiter zu schießen
     private int directionX = 0;
     private int directionY = 0;
 
-    public EnemyAI(Board playerBoard) {
-        this.board = playerBoard;
+    public EnemyAI(Gameboard playerGameboard) {
+        this.gameboard = playerGameboard;
     }
 
     public void intelligentShoot() {
@@ -35,16 +35,16 @@ public class EnemyAI {
                 int y = random.nextInt(10);
 
                 // Wurde die Zelle bereits getroffen dann nächste Schleifenwiederholung
-                Board.Cell cell = board.getCell(x, y);
-                if (cell.wasShot)
+                Gameboard.Box box = gameboard.getBox(x, y);
+                if (box.wasShot)
                     continue;
 
-                shooting = cell.shoot();
+                shooting = box.shoot();
 
                 // Bei einem Treffer...
                 if (shooting) {
                     // ...die Richtung ermitteln, wohin weiter geschossen werden soll
-                    this.firstHit = cell;
+                    this.firstHit = box;
                     shooting = this.findDirection();
                 }
 
@@ -55,8 +55,8 @@ public class EnemyAI {
                 boolean reverse = true;
 
                 // In der gefundenen Richtung weiter schießen, solange die Zellen gültig sind
-                if (board.isValidPoint(lastHit.x + directionX, lastHit.y + directionY) && lastHit.ship != null){
-                    Board.Cell nextHit = board.getCell(lastHit.x + directionX, lastHit.y + directionY);
+                if (gameboard.isValidPoint(lastHit.x + directionX, lastHit.y + directionY) && lastHit.ship != null){
+                    Gameboard.Box nextHit = gameboard.getBox(lastHit.x + directionX, lastHit.y + directionY);
                     if (!nextHit.wasShot){
                         shooting = nextHit.shoot();
                         lastHit = nextHit;
@@ -67,7 +67,7 @@ public class EnemyAI {
                 // Wenn die Zellen nicht gültig waren oder der letzte Treffer kein Schiff mehr war (Ende des Schiffs)
                 // Prüfen, ob es in der anderen Richtung weiter geht
                 if ((reverse && checkReverse()) || (reverse && checkReverse() && lastHit.ship == null)) {
-                    Board.Cell nextHit = board.getCell(firstHit.x + directionX, firstHit.y + directionY);
+                    Gameboard.Box nextHit = gameboard.getBox(firstHit.x + directionX, firstHit.y + directionY);
                     shooting = nextHit.shoot();
                     lastHit = nextHit;
                 } else if (reverse && !checkReverse()) { // Wenn es nicht weiter geht, dann versenkt! Und zurück zu random Modus
@@ -83,7 +83,7 @@ public class EnemyAI {
         boolean foundDirection = false;
 
         // Alle nicht getroffenen oder ungültigen Nachbarzellen holen
-        Board.Cell[] allNeighbors = board.getNeighbors(firstHit.x, firstHit.y, true);
+        Gameboard.Box[] allNeighbors = gameboard.getNeighbors(firstHit.x, firstHit.y, true);
 
         // Wenn es keine gibt, dann in den zufällig Modus gehen
         if(allNeighbors.length == 0) {
@@ -93,7 +93,7 @@ public class EnemyAI {
         }
 
         // Die erste Zelle nehmen und schießen
-        for (Board.Cell neighbor : allNeighbors) {
+        for (Gameboard.Box neighbor : allNeighbors) {
             foundDirection = neighbor.shoot();
             lastHit = neighbor;
             // Gibt die Richtung an in die weiter geschossen werden soll
@@ -114,10 +114,10 @@ public class EnemyAI {
 
     private boolean checkReverse() {
         // Gibt es eine gültige noch nicht beschossene Zelle am anderen Ende
-        if (!board.isValidPoint(firstHit.x + (directionX * (-1)), firstHit.y + (directionY * (-1))))
+        if (!gameboard.isValidPoint(firstHit.x + (directionX * (-1)), firstHit.y + (directionY * (-1))))
             return false;
 
-        Board.Cell nextHit = board.getCell(firstHit.x + (directionX * (-1)), firstHit.y + (directionY * (-1)));
+        Gameboard.Box nextHit = gameboard.getBox(firstHit.x + (directionX * (-1)), firstHit.y + (directionY * (-1)));
         if (nextHit.wasShot)
             return false;
 

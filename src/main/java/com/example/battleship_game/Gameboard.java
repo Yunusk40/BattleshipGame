@@ -15,9 +15,9 @@ import javafx.scene.shape.Rectangle;
 /**
  * Spielfeld Klasse -
  * Klasse wird benötigt, um die Spielfelder für die Spieler zu erstellen
- * Subklasse: Cell - Segmente / Zellen des Boards
+ * Subklasse: Box - Segmente / Zellen des Boards
  */
-public class Board extends Parent {
+public class Gameboard extends Parent {
     // Kapselt die horizontalen Boxen und ordnet sie Vertikal an → UI Komponente Spielfeld
     private final VBox rows = new VBox();
     // Setzt dest ob Spieler oder Gegner Feld
@@ -26,7 +26,7 @@ public class Board extends Parent {
     public int ships = 5;
 
     // Der Konstruktor bekommt einen EventHandler (=Funktion) übergeben, der das Event "Mouse Klick" verarbeitet
-    public Board(boolean enemy, EventHandler<? super MouseEvent> handler) {
+    public Gameboard(boolean enemy, EventHandler<? super MouseEvent> handler) {
         this.enemy = enemy;
 
         // Erstelle 10 Reihen = Horizontal Box...
@@ -34,7 +34,7 @@ public class Board extends Parent {
             HBox row = new HBox();
             // ... fülle jede Reihe mit 10 Zellen und füge einen onClickListener hinzu
             for (int x = 0; x < 10; x++) {
-                Cell c = new Cell(x, y, this);
+                Box c = new Box(x, y, this);
                 c.setOnMouseClicked(handler);
                 row.getChildren().add(c);
             }
@@ -49,26 +49,26 @@ public class Board extends Parent {
     public boolean placeShip(Ship ship, int x, int y) {
         // Darf auf der Stelle platziert werden
         if (canPlaceShip(ship, x, y)) {
-            int length = ship.type;
+            int length = ship.ships;
 
             //Platziert das Schiff und färbt die Zellen ein für horizontale und vertikale Platzierung
             if (ship.vertical) {
                 for (int i = y; i < y + length; i++) {
-                    Cell cell = getCell(x, i);
-                    cell.ship = ship;
+                    Box box = getBox(x, i);
+                    box.ship = ship;
                     if (!enemy) {
-                        cell.setFill(Color.WHITE);
-                        cell.setStroke(Color.GREEN);
+                        box.setFill(Color.GRAY);
+                        box.setStroke(Color.GREEN);
                     }
                 }
             }
             else {
                 for (int i = x; i < x + length; i++) {
-                    Cell cell = getCell(i, y);
-                    cell.ship = ship;
+                    Box box = getBox(i, y);
+                    box.ship = ship;
                     if (!enemy) {
-                        cell.setFill(Color.BLUE);
-                        cell.setStroke(Color.GREEN);
+                        box.setFill(Color.GRAY);
+                        box.setStroke(Color.GREEN);
                     }
                 }
             }
@@ -79,13 +79,13 @@ public class Board extends Parent {
         return false;
     }
 
-    // Holt sich das entsprechende "Cell" Objekt vom Board
-    public Cell getCell(int x, int y) {
-        return (Cell)((HBox)rows.getChildren().get(y)).getChildren().get(x);
+    // Holt sich das entsprechende "Box" Objekt vom Board
+    public Box getBox(int x, int y) {
+        return (Box)((HBox)rows.getChildren().get(y)).getChildren().get(x);
     }
 
     // Erstellt eine Sammlung von benachbarten Punkten, die sich um die Koordinaten x und y befinden
-    public Cell[] getNeighbors(int x, int y, boolean validationFlag) {
+    public Box[] getNeighbors(int x, int y, boolean validationFlag) {
         // Erstellt ein Basisarray
         Point2D[] points = new Point2D[] {
                 new Point2D(x - 1, y),
@@ -94,27 +94,27 @@ public class Board extends Parent {
                 new Point2D(x, y + 1)
         };
 
-        List<Cell> neighbors = new ArrayList<>();
+        List<Box> neighbors = new ArrayList<>();
 
         // Prüft für jeden der Punkte, ob sie innerhalb des Spielfelds liegen
         for (Point2D p : points) {
             if(validationFlag && this.isValidPoint((int)p.getX(), (int)p.getY())){
-                Cell checkCell = getCell((int)p.getX(), (int)p.getY());
-                if(checkCell.wasShot)
+                Box checkBox = getBox((int)p.getX(), (int)p.getY());
+                if(checkBox.wasShot)
                     continue;
             }
 
             if (isValidPoint(p)) {
-                neighbors.add(getCell((int)p.getX(), (int)p.getY()));
+                neighbors.add(getBox((int)p.getX(), (int)p.getY()));
             }
         }
 
-        return neighbors.toArray(new Cell[0]);
+        return neighbors.toArray(new Box[0]);
     }
 
     // Prüft, ob ein bestimmtes Schiff auf einer bestimmten Koordinate gesetzt werden kann
     private boolean canPlaceShip(Ship ship, int x, int y) {
-        int length = ship.type;
+        int length = ship.ships;
 
         // Vertikale und horizontale Prüfung, ob ...
         if (ship.vertical) {
@@ -124,12 +124,12 @@ public class Board extends Parent {
                     return false;
 
                 // ... bereits ein Schiff auf einer der Zellen platziert ist ...
-                Cell cell = getCell(x, i);
-                if (cell.ship != null)
+                Box box = getBox(x, i);
+                if (box.ship != null)
                     return false;
 
                 // ... bereits ein Schiff in direkter Nähe zum ausgewählten Punkt liegt
-                for (Cell neighbor : getNeighbors(x, i, false)) {
+                for (Box neighbor : getNeighbors(x, i, false)) {
                     if (neighbor.ship != null)
                         return false;
                 }
@@ -141,11 +141,11 @@ public class Board extends Parent {
                 if (!isValidPoint(i, y))
                     return false;
 
-                Cell cell = getCell(i, y);
-                if (cell.ship != null)
+                Box box = getBox(i, y);
+                if (box.ship != null)
                     return false;
 
-                for (Cell neighbor : getNeighbors(i, y, false)) {
+                for (Box neighbor : getNeighbors(i, y, false)) {
                     if (!isValidPoint(i, y))
                         return false;
 
@@ -168,10 +168,10 @@ public class Board extends Parent {
     }
 
     /**
-     * Cell Klasse
+     * Box Klasse
      * Zelle erbt von der Klasse Rechteck und stellt die einzelnen Segmente (Zellen) des Spielfelds dar
      */
-    public static class Cell extends Rectangle {
+    public static class Box extends Rectangle {
         // Koordinaten Variablen
         public int x, y;
         // Ordnet das entsprechende Schiff der Zelle hinzu
@@ -179,15 +179,15 @@ public class Board extends Parent {
         // Zustandsvariable - Wurde das Feld bereits "beschossen" -> j/n
         public boolean wasShot = false;
         //Ordnet die Zelle einem Board zu
-        private final Board board;
+        private final Gameboard gameboard;
 
         //Konstruktor - Standrad Zelle is grau und Rahmen schwarz
-        public Cell(int x, int y, Board board) {
+        public Box(int x, int y, Gameboard gameboard) {
             super(30, 30);
             this.x = x;
             this.y = y;
-            this.board = board;
-            setFill(Color.LIGHTGRAY);
+            this.gameboard = gameboard;
+            setFill(Color.BLUE);
             setStroke(Color.BLACK);
         }
 
@@ -204,7 +204,7 @@ public class Board extends Parent {
                 setFill(Color.RED);
                 //..., ob das Schiff alle Leben verloren hat
                 if (!ship.isAlive()) {
-                    board.ships--;
+                    gameboard.ships--;
                 }
                 return true;
             }

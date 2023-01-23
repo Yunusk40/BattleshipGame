@@ -6,12 +6,12 @@ import javafx.scene.Parent;
  * Schiff Klasse
  */
 public class Ship extends Parent {
-    public int type;
+    public int ships;
     public boolean vertical;
     private int health;
 
     public Ship(int ships, boolean vertical) {
-        this.type = ships;
+        this.ships = ships;
         this.vertical = vertical;
         health = ships;
 

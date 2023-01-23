@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: #20B2AA;" xmlns="http://javafx.com/javafx/17.0.2-ea"  xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.battleship_game.MenuController">
+<AnchorPane prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: #20B2AA;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.battleship_game.MenuController">
    <children>
       <AnchorPane layoutX="-2.0" layoutY="169.0" prefHeight="631.0" prefWidth="801.0" style="-fx-background-color: fafafa;">
          <children>
-            <Label layoutX="154.0" layoutY="55.0" prefHeight="89.0" prefWidth="501.0" text="Select game mode" textFill="LIGHTSEAGREEN">
+            <Label layoutX="38.0" layoutY="55.0" prefHeight="89.0" prefWidth="733.0" text="Press &quot;Play Game&quot; to start" textFill="LIGHTSEAGREEN">
                <font>
                   <Font name="Chakra Petch Regular" size="61.0" />
                </font>

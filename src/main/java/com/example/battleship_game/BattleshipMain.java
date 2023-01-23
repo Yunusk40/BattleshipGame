@@ -13,12 +13,12 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
-import com.example.battleship_game.Board.Cell;
+import com.example.battleship_game.Gameboard.Box;
 
 public class BattleshipMain extends Application {
 
     private boolean running = false;
-    private Board enemyBoard, playerBoard;
+    private Gameboard enemyGameboard, playerGameboard;
 
     private int shipsToPlace = 5;
     private boolean enemyTurn = false;
@@ -41,21 +41,20 @@ public class BattleshipMain extends Application {
         root.setMaxSize(500,500);
 
         // Event = Klicken auf eine Zelle im gegnerischen Spielfeld
-        enemyBoard = new Board(true, event -> {
+        enemyGameboard = new Gameboard(true, event -> {
             // Sind wir im Zustand "Abwechselndes Schießen" wenn nicht Event = Schiff setzen
             if (!running)
                 return;
 
-            Cell cell = (Cell) event.getSource();
-            if (cell.wasShot)
+            Box box = (Box) event.getSource();
+            if (box.wasShot)
                 return;
 
             // Wurde ein gegnerisches Schiff getroffen? Wenn "ja" dann darf man nochmal da moveEnemy() nicht aufgerufen wird
-            enemyTurn = !cell.shoot();
+            enemyTurn = !box.shoot();
 
             // Befinden sich noch Schiffe auf dem gegnerischen Feld?
-            if (enemyBoard.ships == 0) {
-                System.out.println("YOU WIN");
+            if (enemyGameboard.ships == 0) {
                 win = true;
                 try {
                     changeScene();
@@ -75,26 +74,26 @@ public class BattleshipMain extends Application {
         });
 
         // Event = Klicken auf eine Zelle im eigenen Spielfeld
-        playerBoard = new Board(false, event -> {
+        playerGameboard = new Gameboard(false, event -> {
             // Sind wir im Zustand "Abwechselndes Schießen" wenn nicht Event = Schiff setzen
             if (running)
                 return;
 
-            Cell cell = (Cell) event.getSource();
+            Box box = (Box) event.getSource();
 
             // Setzt neues Schiff (horizontal/vertikal). Wenn alle Schiffe gesetzt sind, dann starte das Siel -> running = true!
-            if (playerBoard.placeShip(new Ship(shipsToPlace, event.getButton() == MouseButton.PRIMARY), cell.x, cell.y)) {
+            if (playerGameboard.placeShip(new Ship(shipsToPlace, event.getButton() == MouseButton.PRIMARY), box.x, box.y)) {
                 if (--shipsToPlace == 0) {
                     startGame();
                 }
             }
         });
 
-        this.enemyAI = new EnemyAI(playerBoard);
+        this.enemyAI = new EnemyAI(playerGameboard);
 
         // Setzt die boards in eine Horizontale Box und positioniert sie zentral mittig
 
-        HBox hbox = new HBox(20, enemyBoard, playerBoard);
+        HBox hbox = new HBox(20, enemyGameboard, playerGameboard);
 
         hbox.setAlignment(Pos.CENTER);
 
@@ -107,7 +106,7 @@ public class BattleshipMain extends Application {
     private void moveEnemy() throws IOException {
         enemyAI.intelligentShoot();
 
-        if (playerBoard.ships == 0) {
+        if (playerGameboard.ships == 0) {
             System.out.println("YOU LOSE");
             win = false;
             changeScene();
@@ -137,7 +136,7 @@ public class BattleshipMain extends Application {
             int x = random.nextInt(10);
             int y = random.nextInt(10);
 
-            if (enemyBoard.placeShip(new Ship(type, Math.random() < 0.5), x, y)) {
+            if (enemyGameboard.placeShip(new Ship(type, Math.random() < 0.5), x, y)) {
                 type--;
             }
         }
