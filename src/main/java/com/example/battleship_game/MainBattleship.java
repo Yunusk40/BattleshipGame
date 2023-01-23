@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import com.example.battleship_game.Gameboard.Box;
@@ -18,9 +19,13 @@ import com.example.battleship_game.Gameboard.Box;
 public class MainBattleship extends Application {
 
     private boolean running = false;
-    private Gameboard enemyGameboard, playerGameboard;
+    private Gameboard enemyGameboard, playerGameboard, firstPlayerBoard, secondPlayerBoard;;
 
     private int shipsToPlace = 5;
+    private int shipsToPlaceP1 = 5;
+    private int shipsToPlaceP2 = 5;
+
+    private int playerTurn = 1;
     private boolean enemyTurn = false;
     private final Random random = new Random();
     static Stage stageSave = null;
@@ -114,6 +119,133 @@ public class MainBattleship extends Application {
         }
     }
 
+    public Parent createContentPVP() {
+        // Erstellt eine Basis Oberfläche
+        running = false;
+        playerTurn = 1;
+        shipsToPlaceP1 = 5;
+        shipsToPlaceP2 = 5;
+
+        BorderPane rootPVP = new BorderPane();
+        rootPVP.setMinSize(500,500);
+        rootPVP.setMaxSize(500,500);
+
+        // Event = Klicken auf eine Zelle im eigenen Spielfeld
+        firstPlayerBoard = new Gameboard(false, event -> {
+            // Sind wir im Zustand "Abwechselndes Schießen" wenn nicht Event = Schiff setzen
+            Box cell = (Box) event.getSource();
+            if (!running && playerTurn == 1){
+                swapVisibility(true, false);
+
+                // Setzt neues Schiff (horizontal/vertikal)
+                if (firstPlayerBoard.placeShip(new Ship(shipsToPlaceP1, event.getButton() == MouseButton.PRIMARY), cell.x, cell.y)) {
+                    playerTurn = 2;
+                    --shipsToPlaceP1;
+                    swapVisibility(false, true);
+                }
+            } else if (shipsToPlaceP1 == 0){
+                boolean shooting;
+                swapVisibility(true, false);
+
+                if (cell.wasShot)
+                    return;
+
+                //Schuss auf den Gegner
+                shooting = cell.shoot();
+
+                if(!shooting)
+                    swapVisibility(false, true);
+
+                if (firstPlayerBoard.ships == 0) {
+                    System.out.println("PLAYER 1 - YOU LOSE");
+                    win = false;
+                    try {
+                        changeScene();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+        });
+
+        secondPlayerBoard = new Gameboard(false, event -> {
+            // Sind wir im Zustand "Abwechselndes Schießen" wenn nicht Event = Schiff setzen
+            Box cell = (Box) event.getSource();
+            if (!running && playerTurn == 2) {
+                swapVisibility(false, true);
+
+                // Setzt neues Schiff (horizontal/vertikal). Wenn alle Schiffe gesetzt sind, dann starte das Spiel -> running = true!
+                if (secondPlayerBoard.placeShip(new Ship(shipsToPlaceP2, event.getButton() == MouseButton.PRIMARY), cell.x, cell.y)) {
+                    playerTurn = 1;
+                    swapVisibility(true, false);
+
+                    if (--shipsToPlaceP2 == 0) {
+                        running = true;
+                        swapVisibility(true, true);
+                        hideShipsOnBothFields();
+                    }
+                }
+            } else  if (shipsToPlaceP2 == 0){
+                boolean shooting;
+                if (cell.wasShot)
+                    return;
+
+                swapVisibility(false, true);
+
+                //Schuss auf den Gegner
+                shooting = cell.shoot();
+
+                //Wenn nicht getroffen wurde, ist der Gegner am Zug
+                if(!shooting)
+                    swapVisibility(true, false);
+
+                if (secondPlayerBoard.ships == 0) {
+                    System.out.println("PLAYER 2 - YOU LOSE");
+                    win = false;
+                    try {
+                        changeScene();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+        });
+
+        // Setzt die boards in eine Horizontale Box und positioniert sie zentral mittig
+        HBox hbox = new HBox(20, secondPlayerBoard, firstPlayerBoard);
+
+        hbox.setAlignment(Pos.CENTER);
+
+        rootPVP.setCenter(hbox);
+
+        return rootPVP;
+    }
+
+    private void hideShipsOnBothFields() {
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                Gameboard.Box cell = firstPlayerBoard.getBox(i,j);
+                cell.setFill(Color.LIGHTGRAY);
+                cell.setStroke(Color.BLACK);
+            }
+        }
+
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                Gameboard.Box cell = firstPlayerBoard.getBox(i,j);
+                cell.setFill(Color.LIGHTGRAY);
+                cell.setStroke(Color.BLACK);
+            }
+        }
+    }
+
+    // Setzt die Sichtbarkeit der Spielfelder
+    private void swapVisibility(boolean p1, boolean p2){
+        secondPlayerBoard.rows.setVisible(p2);
+        firstPlayerBoard.rows.setVisible(p1);
+    }
+
+
     // Erstellt die JavaFX Szene für das Spiel
     private void changeScene() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainBattleship.class.getResource("endScreen.fxml"));
@@ -157,6 +289,7 @@ public class MainBattleship extends Application {
 
         stageSave = stage;
         sceneSaveBot = new Scene(createContent(),700, 500);
+        sceneSaveReal = new Scene(createContentPVP(), 700, 500);
     }
 
     public static void main(String[] args) {
