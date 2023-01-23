@@ -1,8 +1,6 @@
 package com.example.battleship_game;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
@@ -18,7 +16,7 @@ public class WinController implements Initializable {
     private Text winTitle;
 
     @FXML
-    void startComputer(MouseEvent event) {
+    void startComputer() {
         stageSave.setTitle("Battleship Bot vs Player");
 
         stageSave.setScene(sceneSaveBot);
@@ -26,12 +24,12 @@ public class WinController implements Initializable {
     }
 
     @FXML
-    void exit(MouseEvent event) {
+    void exit() {
         System.exit(0);
     }
 
     @FXML
-    void rulesButton(ActionEvent event) {
+    void rulesButton() {
         rulesPane.setVisible(!rulesPane.isVisible());
     }
 

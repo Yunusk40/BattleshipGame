@@ -7,7 +7,7 @@ import javafx.scene.Parent;
  */
 public class Ship extends Parent {
     public int type;
-    public boolean vertical = true;
+    public boolean vertical;
     private int health;
 
     public Ship(int ships, boolean vertical) {

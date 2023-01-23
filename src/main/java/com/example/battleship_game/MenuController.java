@@ -1,9 +1,7 @@
 package com.example.battleship_game;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
 import static com.example.battleship_game.BattleshipMain.*;
@@ -16,24 +14,24 @@ public class MenuController {
     private Pane rulesPane;
 
     @FXML
-    void exit(MouseEvent event) {
+    void exit() {
         System.exit(0);
     }
 
     @FXML
-    void rulesButton(ActionEvent event) {
+    void rulesButton() {
         rulesPane.setVisible(!rulesPane.isVisible());
     }
 
     @FXML
-    void startFriends(MouseEvent event) {
+    void startFriends() {
         stageSave.setTitle("Battleship Player vs Player");
         stageSave.setScene(sceneSaveReal);
         stageSave.show();
     }
 
     @FXML
-    void startComputer(MouseEvent event) {
+    void startComputer() {
         stageSave.setTitle("Battleship Bot vs Player");
 
         stageSave.setScene(sceneSaveBot);

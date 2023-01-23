@@ -1,23 +1,23 @@
 package com.example.battleship_game;
 
-import java.util.ArrayList;
-import java.util.List;
+
 import java.util.Random;
 
 /**
  * Diese Klasse verbessert die Schusslogik des Computers
- * Der Computer prüft in welche Richtung es Sinn macht weiter zu schießen
+ * Computer prüft in welche Richtung es Sinn macht weiter zu schießen
  */
 public class EnemyAI {
-    private Random random = new Random();
+    private final Random random = new Random();
     // Zustandsvariablen: Definiert, ob zufällig oder gezielt geschossen werden soll
     private boolean shootRandom = true;
     private boolean directionSet = false;
-    private Board board;
+    private final Board board;
     // Die letzte beschossene Zelle und im Falle eines Treffers die erste Zelle
     private Board.Cell lastHit = null;
     private Board.Cell firstHit = null;
 
+    //Benötigt, um die richtige Richtung weiter zu schießen
     private int directionX = 0;
     private int directionY = 0;
 
@@ -48,10 +48,10 @@ public class EnemyAI {
                     shooting = this.findDirection();
                 }
 
-            } else if (!directionSet && !shootRandom) { // Die Richtung ist nach einem Treffer noch nicht gefunden
+            } else if (!directionSet) { // Die Richtung ist nach einem Treffer noch nicht gefunden
                 shooting = this.findDirection();
 
-            } else if (directionSet && !shootRandom) { // Die Richtung ist gefunden
+            } else { // Die Richtung ist gefunden
                 boolean reverse = true;
 
                 // In der gefundenen Richtung weiter schießen, solange die Zellen gültig sind
@@ -65,7 +65,7 @@ public class EnemyAI {
                 }
 
                 // Wenn die Zellen nicht gültig waren oder der letzte Treffer kein Schiff mehr war (Ende des Schiffs)
-                // Prüfen ob es in der anderen Richtung weiter geht
+                // Prüfen, ob es in der anderen Richtung weiter geht
                 if ((reverse && checkReverse()) || (reverse && checkReverse() && lastHit.ship == null)) {
                     Board.Cell nextHit = board.getCell(firstHit.x + directionX, firstHit.y + directionY);
                     shooting = nextHit.shoot();
@@ -81,12 +81,12 @@ public class EnemyAI {
 
     public boolean findDirection() {
         boolean foundDirection = false;
-        int x = 0, y = 0;
+
         // Alle nicht getroffenen oder ungültigen Nachbarzellen holen
         Board.Cell[] allNeighbors = board.getNeighbors(firstHit.x, firstHit.y, true);
 
-        // Wenn es keine gibt, dann in den Zufällig Modus gehen
-        if(allNeighbors.length == 0 || allNeighbors == null) {
+        // Wenn es keine gibt, dann in den zufällig Modus gehen
+        if(allNeighbors.length == 0) {
             shootRandom = true;
             directionSet = false;
             return true;
@@ -121,7 +121,7 @@ public class EnemyAI {
         if (nextHit.wasShot)
             return false;
 
-        // Wenn ja dann die Richtung umkehren
+        // Wenn "ja", dann die Richtung umkehren
         directionX = directionX * (-1);
         directionY = directionY * (-1);
 

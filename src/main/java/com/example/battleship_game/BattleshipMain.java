@@ -11,8 +11,6 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import com.example.battleship_game.Board.Cell;
@@ -20,16 +18,15 @@ import com.example.battleship_game.Board.Cell;
 public class BattleshipMain extends Application {
 
     private boolean running = false;
-    private Board enemyBoard, playerBoard, secondPlayerBoard;
+    private Board enemyBoard, playerBoard;
 
     private int shipsToPlace = 5;
     private boolean enemyTurn = false;
-    private Random random = new Random();
+    private final Random random = new Random();
     static Stage stageSave = null;
     static Scene sceneSaveBot = null;
     static Scene sceneSaveReal = null;
     public static boolean win = false;
-    private static Stage stage;
 
     private EnemyAI enemyAI;
 
@@ -117,6 +114,7 @@ public class BattleshipMain extends Application {
         }
     }
 
+    // Erstellt die JavaFX Szene für das Spiel
     private void changeScene() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(BattleshipMain.class.getResource("endScreen.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 800, 670);

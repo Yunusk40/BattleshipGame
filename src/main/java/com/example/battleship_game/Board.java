@@ -13,19 +13,19 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 /**
- * Spielfeld Klasse
- * Benötigt um die Spielfelder für die Spieler zu erstellen
+ * Spielfeld Klasse -
+ * Klasse wird benötigt, um die Spielfelder für die Spieler zu erstellen
  * Subklasse: Cell - Segmente / Zellen des Boards
  */
 public class Board extends Parent {
-    // Kapselt die horizontalen Boxen und ordnet sie Vertikal an -> UI Komponente Spielfeld
-    private VBox rows = new VBox();
+    // Kapselt die horizontalen Boxen und ordnet sie Vertikal an → UI Komponente Spielfeld
+    private final VBox rows = new VBox();
     // Setzt dest ob Spieler oder Gegner Feld
-    private boolean enemy = false;
+    private final boolean enemy;
     // Anzahl der Schiffe pro Feld
     public int ships = 5;
 
-    // Der Kosntruktor bekommt einen EventHandler (=Funktion) übergeben, der das Event "Mouse Klick" verarbeitet
+    // Der Konstruktor bekommt einen EventHandler (=Funktion) übergeben, der das Event "Mouse Klick" verarbeitet
     public Board(boolean enemy, EventHandler<? super MouseEvent> handler) {
         this.enemy = enemy;
 
@@ -84,9 +84,9 @@ public class Board extends Parent {
         return (Cell)((HBox)rows.getChildren().get(y)).getChildren().get(x);
     }
 
-    // Erstellt eine Sammlung von benachbarten Punkten, die sich um die Koordinaten x,y befinden
+    // Erstellt eine Sammlung von benachbarten Punkten, die sich um die Koordinaten x und y befinden
     public Cell[] getNeighbors(int x, int y, boolean validationFlag) {
-        // Erstellt ein Basis Array
+        // Erstellt ein Basisarray
         Point2D[] points = new Point2D[] {
                 new Point2D(x - 1, y),
                 new Point2D(x + 1, y),
@@ -94,7 +94,7 @@ public class Board extends Parent {
                 new Point2D(x, y + 1)
         };
 
-        List<Cell> neighbors = new ArrayList<Cell>();
+        List<Cell> neighbors = new ArrayList<>();
 
         // Prüft für jeden der Punkte, ob sie innerhalb des Spielfelds liegen
         for (Point2D p : points) {
@@ -169,17 +169,17 @@ public class Board extends Parent {
 
     /**
      * Cell Klasse
-     * Erbt von der Klasse Rechteck und stellt die einzelenen Segmente (Zellen) des Spielfelds dar
+     * Zelle erbt von der Klasse Rechteck und stellt die einzelnen Segmente (Zellen) des Spielfelds dar
      */
-    public class Cell extends Rectangle {
-        // Kooridnaten Variablen
+    public static class Cell extends Rectangle {
+        // Koordinaten Variablen
         public int x, y;
         // Ordnet das entsprechende Schiff der Zelle hinzu
         public Ship ship = null;
         // Zustandsvariable - Wurde das Feld bereits "beschossen" -> j/n
         public boolean wasShot = false;
         //Ordnet die Zelle einem Board zu
-        private Board board;
+        private final Board board;
 
         //Konstruktor - Standrad Zelle is grau und Rahmen schwarz
         public Cell(int x, int y, Board board) {
