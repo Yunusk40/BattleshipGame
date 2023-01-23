@@ -4,16 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e0ee239a-fa32-47c8-b0aa-8a680363347b" name="Changes" comment="commit">
+    <list default="true" id="e0ee239a-fa32-47c8-b0aa-8a680363347b" name="Changes" comment="Kleine Verbesserungen">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/battleship_game/BattleshipMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/battleship_game/BattleshipMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/battleship_game/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/battleship_game/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/battleship_game/EnemyAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/battleship_game/EnemyAI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/battleship_game/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/battleship_game/MenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/battleship_game/Ship.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/battleship_game/Ship.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/battleship_game/WinController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/battleship_game/WinController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/battleship_game/MainMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/battleship_game/MainMenu.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/battleship_game/endScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/battleship_game/endScreen.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,7 +118,7 @@
       <workItem from="1674307372579" duration="19499000" />
       <workItem from="1674398627762" duration="1831000" />
       <workItem from="1674465545365" duration="225000" />
-      <workItem from="1674465772416" duration="3283000" />
+      <workItem from="1674465772416" duration="4452000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <created>1672504000548</created>
@@ -149,7 +141,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673285308044</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Kleine Verbesserungen">
+      <created>1674469817966</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1674469817966</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -168,6 +167,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit" />
+    <MESSAGE value="Kleine Verbesserungen" />
+    <option name="LAST_COMMIT_MESSAGE" value="Kleine Verbesserungen" />
   </component>
 </project>
